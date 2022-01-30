@@ -1,5 +1,7 @@
 {{ define "main" }}
 
+{{ $params := index site.Params site.Language.Lang }}
+
 <!-- page title -->
 <section class="page-title-alt bg-primary position-relative overflow-hidden">
   <div class="container">
@@ -28,11 +30,11 @@
       </div>
       <div class="col-md-4 text-center drag-lg-top">
         <div class="shadow-down mb-4">
-          <img src="{{.Params.author_image | absURL }}" alt="author"
+          <img src="{{$params.author_image | absURL }}" alt="author"
             class="img-fluid w-100 rounded-lg border-thick border-white">
         </div>
-        <img src="{{.Params.author_signature | absURL }}" alt="signature" class="img-fluid">
-        <h4>{{ site.Params.Author }}</h4>
+        <img src="{{$params.author_signature | absURL }}" alt="signature" class="img-fluid">
+        <h4>{{ $params.Author }}</h4>
       </div>
     </div>
   </div>

@@ -1,4 +1,6 @@
-{{ if site.Params.contact.enable }}
+{{ $params := index site.Params site.Language.Lang }}
+
+{{ if $params.contact.enable }}
 <!-- contact -->
 <section class="section section-on-footer" data-background="{{`images/backgrounds/bg-dots.png` | absURL}}">
   <div class="container">
@@ -9,7 +11,7 @@
       <div class="col-lg-8 mx-auto">
         <div class="bg-white rounded text-center p-5 shadow-down">
           <h4 class="mb-80">Contact Form</h4>
-          <form action="{{site.Params.contact.form_action}}" method="POST" class="row">
+          <form action="{{$params.contact.form_action}}" method="POST" class="row">
             <div class="col-md-6">
               <input type="text" id="name" name="name" placeholder="Full Name" class="form-control px-0 mb-4">
             </div>
@@ -39,32 +41,32 @@
       <div class="row">
         <div class="col-md-4">
           <h5 class="text-light">Email</h5>
-          <p class="text-white paragraph-lg font-secondary"><a href="mailto:{{site.Params.email}}">{{site.Params.email}}</a></p>
+          <p class="text-white paragraph-lg font-secondary"><a href="mailto:{{$params.email}}">{{$params.email}}</a></p>
         </div>
         <div class="col-md-4">
           <h5 class="text-light">Phone</h5>
-          <p class="text-white paragraph-lg font-secondary"><a href="tel:{{site.Params.phone}}">{{site.Params.phone}}</a></p>
+          <p class="text-white paragraph-lg font-secondary"><a href="tel:{{$params.phone}}">{{$params.phone}}</a></p>
         </div>
         <div class="col-md-4">
           <h5 class="text-light">Address</h5>
-          <p class="text-white paragraph-lg font-secondary">{{site.Params.address}}</p>
+          <p class="text-white paragraph-lg font-secondary">{{$params.address}}</p>
         </div>
       </div>
     </div>
   </div>
   <div class="footer-bottom border-top text-center border-dark py-5">
-    <p class="mb-0 text-light">{{ site.Params.copyright | markdownify }}</p>
+    <p class="mb-0 text-light">{{ $params.copyright | markdownify }}</p>
   </div>
 </footer>
 <!-- /footer -->
 
 {{ "<!-- Google Map API -->" | safeHTML }}
-{{ if site.Params.map.enable }}
-<script src="{{ site.Params.map.gmap_api | safeURL }}"></script>
+{{ if $params.map.enable }}
+<script src="{{ $params.map.gmap_api | safeURL }}"></script>
 {{ end }}
 
 {{ "<!-- JS Plugins -->" | safeHTML }}
-{{ range site.Params.plugins.js}}
+{{ range $params.plugins.js}}
 <script src="{{ .link | absURL }}"></script>
 {{ end }}
 
@@ -74,7 +76,7 @@
 
 
 <!-- cookie -->
-{{ if site.Params.cookies.enable }}
+{{ if $params.cookies.enable }}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
 <div id="js-cookie-box" class="cookie-box cookie-box-hide">
 	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary ml-2">I Accept</span>
@@ -87,7 +89,7 @@
 			cookieBox.classList.remove('cookie-box-hide');
 			cookieButton.onclick = function () {
 				Cookies.set('cookie-box', true, {
-					expires: {{ site.Params.cookies.expire_days }}
+					expires: {{ $params.cookies.expire_days }}
 				});
 				cookieBox.classList.add('cookie-box-hide');
 			};

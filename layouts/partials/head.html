@@ -1,26 +1,28 @@
+{{ $params := index site.Params site.Language.Lang }}
+
 <head>
   <meta charset="utf-8">
   <title>{{ .Title }}</title>
 
   {{ "<!-- mobile responsive meta -->" | safeHTML }}
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}">
-  {{ with site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with $params.description }}{{ . }}{{ end }}{{ end }}">
+  {{ with $params.author }}<meta name="author" content="{{ . }}">{{ end }}
   {{ hugo.Generator }}
 
-  {{ with site.Params.baidu_site_verification }}
+  {{ with $params.baidu_site_verification }}
 	{{ "<!-- baidu site verification -->" | safeHTML }}
   <meta name="baidu-site-verification" content="{{ . }}" />
   {{ end }}
 
   <style>
     :root{
-      --primary-color:{{ site.Params.theme_color }};
+      --primary-color:{{ $params.theme_color }};
     }
   </style>
 
   {{ "<!-- plugins -->" | safeHTML }}
-  {{ range site.Params.plugins.css }}
+  {{ range $params.plugins.css }}
   <link rel="stylesheet" href="{{ .link | absURL }} ">
   {{ end }}
 
@@ -32,7 +34,7 @@
   <link rel="shortcut icon" href="{{ `images/favicon.png` | absURL }} " type="image/x-icon">
   <link rel="icon" href="{{ `images/favicon.png` | absURL }} " type="image/x-icon">
 
-  {{ with site.Params.google_analytics_id }}
+  {{ with $params.google_analytics_id }}
 	{{ "<!-- Global Site Tag (gtag.js) - Google Analytics -->" | safeHTML }}
 	<script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
 	<script>
@@ -44,7 +46,7 @@
 	</script>
 	{{ end }}
 
-  {{ with site.Params.baidu_analytics_id }}
+  {{ with $params.baidu_analytics_id }}
 	{{ "<!--  Baidu analytics -->" | safeHTML }}
   <script>
     var _hmt = _hmt || [];
