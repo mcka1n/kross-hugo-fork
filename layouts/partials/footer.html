@@ -61,13 +61,13 @@
 <!-- /footer -->
 
 {{ "<!-- Google Map API -->" | safeHTML }}
-{{ if site.Params.map.enable }}
+{{ if $params.map.enable }}
 <script src="{{ $params.map.gmap_api | safeURL }}"></script>
 {{ end }}
 
 {{ "<!-- JS Plugins -->" | safeHTML }}
 {{ range site.Params.plugins.js}}
-<script src="{{ .link | absURL }}"></script>
+<script src="{{ .URL | absURL }}"></script>
 {{ end }}
 
 {{ "<!-- Main Script -->" | safeHTML }}
@@ -76,7 +76,7 @@
 
 
 <!-- cookie -->
-{{ if site.Params.cookies.enable }}
+{{ if $params.cookies.enable }}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
 <div id="js-cookie-box" class="cookie-box cookie-box-hide">
   This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary ml-2">I Accept</span>
@@ -89,7 +89,7 @@
       cookieBox.classList.remove('cookie-box-hide');
       cookieButton.onclick = function () {
         Cookies.set('cookie-box', true, {
-          expires: {{ site.Params.cookies.expire_days }}
+          expires: {{ $params.cookies.expire_days }}
         });
         cookieBox.classList.add('cookie-box-hide');
       };

@@ -6,8 +6,8 @@
 
   {{ "<!-- mobile responsive meta -->" | safeHTML }}
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with $params.description }}{{ . }}{{ end }}{{ end }}">
-  {{ with $params.author }}<meta name="author" content="{{ . }}">{{ end }}
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}">
+  {{ with site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
   {{ hugo.Generator }}
 
   {{ with $params.baidu_site_verification }}
@@ -23,7 +23,7 @@
 
   {{ "<!-- plugins -->" | safeHTML }}
   {{ range site.Params.plugins.css }}
-  <link rel="stylesheet" href="{{ .link | absURL }} ">
+  <link rel="stylesheet" href="{{ .URL | absURL }} ">
   {{ end }}
 
   {{ "<!-- Main Stylesheet -->" | safeHTML }}
@@ -34,7 +34,7 @@
   <link rel="shortcut icon" href="{{ `images/favicon.png` | absURL }} " type="image/x-icon">
   <link rel="icon" href="{{ `images/favicon.png` | absURL }} " type="image/x-icon">
 
-  {{ with $params.google_analytics_id }}
+  {{ with site.Params.google_analytics_id }}
   {{ "<!-- Global Site Tag (gtag.js) - Google Analytics -->" | safeHTML }}
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
   <script>
@@ -46,7 +46,7 @@
   </script>
   {{ end }}
 
-  {{ with $params.baidu_analytics_id }}
+  {{ with site.Params.baidu_analytics_id }}
   {{ "<!--  Baidu analytics -->" | safeHTML }}
   <script>
     var _hmt = _hmt || [];
