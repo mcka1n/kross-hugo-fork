@@ -1,6 +1,6 @@
 <header class="navigation fixed-top">
   <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="{{ .Site.BaseURL }}"><img src="{{ .Site.Params.logo | absURL }}" alt="{{.Site.Title}}"></a>
+    <a class="navbar-brand" href="{{ site.BaseURL }}"><img src="{{ site.logo | absURL }}" alt="{{site.Title}}"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
       aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,9 +9,9 @@
     <div class="collapse navbar-collapse text-center" id="navigation">
       <ul class="navbar-nav ml-auto">
         <!-- <li class="nav-item active">
-          <a class="nav-link" href="{{ .Site.BaseURL }}">{{ with .Site.Params.Home }} {{ . }} {{ end }}</a>
+          <a class="nav-link" href="{{ site.BaseURL }}">{{ with site.Home }} {{ . }} {{ end }}</a>
         </li>
-        {{ range .Site.Menus.main }}
+        {{ range site.Menus.main }}
         {{ if .HasChildren }}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"

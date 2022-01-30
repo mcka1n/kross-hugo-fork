@@ -40,7 +40,7 @@
     </div>
     <!-- social icon -->
     <ul class="list-unstyled ml-5 mt-3 position-relative zindex-1">
-      {{ range .Site.Params.social }}
+      {{ range site.Params.social }}
       <li class="mb-3"><a class="text-white" href="{{.URL | safeURL }}"><i class="{{.icon}}"></i></a></li>
       {{ end }}
     </ul>
@@ -269,7 +269,7 @@
         <div class="col-12 text-center">
           <h2 class="section-title">{{$data.homepage.blog.title | markdownify }}</h2>
         </div>
-        {{ range first 3 .Site.RegularPages }}
+        {{ range first 3 site.RegularPages }}
         {{ .Render "post" }}
         {{ end }}
       </div>
