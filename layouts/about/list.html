@@ -1,5 +1,8 @@
 {{ define "main" }}
 
+{{ $params := index site.Params site.Language.Lang }}
+{{ $data := index site.Data site.Language.Lang }}
+
 <!-- page title -->
 <section class="page-title-alt bg-primary position-relative overflow-hidden">
   <div class="container">
@@ -32,7 +35,7 @@
             class="img-fluid w-100 rounded-lg border-thick border-white">
         </div>
         <img src="{{.Params.author_signature | absURL }}" alt="signature" class="img-fluid">
-        <h4>{{ site.Params.Author }}</h4>
+        <h4>{{ $params.Author }}</h4>
       </div>
     </div>
   </div>
@@ -40,8 +43,8 @@
 <!-- /about -->
 
 <!-- Work Process -->
-{{ if site.Data.about.work_process.enable }}
-{{ with site.Data.about.work_process }}
+{{ if $data.about.work_process.enable }}
+{{ with $data.about.work_process }}
 <section class="section">
   <div class="container">
     <div class="row justify-content-around">
@@ -63,8 +66,8 @@
 <!-- ./Work Process -->
 
 <!-- team -->
-{{ if site.Data.about.team.enable }}
-{{ with site.Data.about.team }}
+{{ if $data.about.team.enable }}
+{{ with $data.about.team }}
 <section class="section bg-cover" data-background="{{`images/backgrounds/team-bg.png`|relURL}}">
   <div class="container">
     <div class="row">
@@ -89,12 +92,12 @@
 {{ end }}
 <!-- /team -->
 
-{{ if site.Data.about.clients_logo_slider.enable }}
+{{ if $data.about.clients_logo_slider.enable }}
 <section class="section">
   <div class="container">
     <div class="row">
       <div class="col-12 text-center">
-        <h2 class="section-title">{{ site.Data.about.clients_logo_slider.title | markdownify }}</h2>
+        <h2 class="section-title">{{ $data.about.clients_logo_slider.title | markdownify }}</h2>
       </div>
     </div>
     {{ partial "client-slider.html" . }}
