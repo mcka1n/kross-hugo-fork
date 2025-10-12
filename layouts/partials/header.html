@@ -63,7 +63,7 @@
       </ul>
 
       <!-- Language List -->
-        {{- if hugo.IsMultiLingual }}
+        {{- if hugo.IsMultilingual }}
         <select id="select-language" onchange="location = this.value;">
           {{ $siteLanguages := site.Languages}}
           {{ $pageLang := .Page.Lang}}
