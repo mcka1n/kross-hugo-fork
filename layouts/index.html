@@ -183,6 +183,72 @@
   {{ end }}
   {{ end }}
 
+  {{ if $data.homepage.faq.enable }}
+  {{ with $data.homepage.faq }}
+  <!-- FAQ -->
+   <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2 class="section-title">{{ .header.title | markdownify }}</h2>
+          <h3>{{ .header.intro }}</h3>
+        </div>
+
+        <div class="col-12">
+          <div class="accordion" id="homepageFaqAccordion">
+            {{ range $i, $entry := .item }}
+            {{ $id := printf "faq-%d" $i }}
+            <div class="card">
+              <div class="card-header" id="heading-{{ $id }}">
+                <h5 class="mb-0">
+                  <button class="btn d-flex justify-content-between align-items-center w-100" type="button"
+                          data-toggle="collapse" data-target="#collapse-{{ $id }}" aria-expanded="{{ if eq $i 0 }}true{{ else }}false{{ end }}"
+                          aria-controls="collapse-{{ $id }}">
+                    <span>{{ $entry.q }}</span>
+                    <span class="caret">▾</span>
+                  </button>
+                </h5>
+              </div>
+
+              <div id="collapse-{{ $id }}" class="collapse {{ if eq $i 0 }}show{{ end }}" aria-labelledby="heading-{{ $id }}" data-parent="#homepageFaqAccordion">
+                <div class="card-body">
+                  {{ with $entry.a }}
+                    <div class="faq-answer">{{ . | markdownify }}</div>
+                  {{ end }}
+
+                  {{ with $entry.list }}
+                    <ul style="list-style: disc; margin-left: 1.25rem;">
+                      {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
+                    </ul>
+                  {{ end }}
+
+                  {{ with $entry.subitems }}
+                    <div class="faq-subitems">
+                      {{ range $j, $sub := . }}
+                        <div class="faq-subitem">
+                          {{ with $sub.q }}<h6 class="mb-1">{{ . }}</h6>{{ end }}
+                          {{ with $sub.a }}<div>{{ . | markdownify }}</div>{{ end }}
+                          {{ with $sub.list }}
+                            <ul style="list-style: disc; margin-left: 1.25rem;">
+                              {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
+                            </ul>
+                          {{ end }}
+                        </div>
+                      {{ end }}
+                    </div>
+                  {{ end }}
+                </div>
+              </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /FAQ -->
+  {{ end }}
+  {{ end }}
 
   {{ if $data.homepage.portfolio.enable }}
   <!-- portfolio -->
